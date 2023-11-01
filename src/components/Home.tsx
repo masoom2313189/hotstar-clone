@@ -20,7 +20,7 @@ const Home = (props: movieProp) => {
           type="text"
           className="ml-28 mt-3 bg-gray-800 border 
          border-gray-800 text-white text-sm rounded-lg focus:ring-gray-800
-          focus:border-gray-800 block w-10/12 p-2.5 outline-none"
+          focus:border-gray-800 block md:w-10/12 p-2.5 outline-none"
           placeholder="Movies, Shows and more"
           required
         />

@@ -36,11 +36,12 @@ const Signin = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-screen bg-black">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen bg-black">
       <div
         style={{
           backgroundImage: `linear-gradient(to left,rgba(0,0,0,7),rgba(0,0,0,0.1)),url(${signin})`,
         }}
+        className=" md:block hidden"
       ></div>
       <div className="ml-36">
         <h1 className="mt-24 text-xl font-semibold text-white">

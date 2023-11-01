@@ -63,7 +63,7 @@ const ViewTrailer = (props: idProp) => {
     <div>
       <button
         onClick={openModal}
-        className="bg-zinc-600 mt-10 w-80 h-12 hover:bg-gray-700
+        className="bg-zinc-600 mt-10 sm:w-80 w-40 h-12 hover:bg-gray-700
          text-white font-bold py-2 px-4 rounded"
       >
         Watch Now

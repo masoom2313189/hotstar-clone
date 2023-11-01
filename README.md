@@ -1,6 +1,6 @@
 # Live
 
-https://disnep-hotstar-clone.netlify.app/
+https://hotstar-clone-c56cd.web.app/
 
 # Preview
 

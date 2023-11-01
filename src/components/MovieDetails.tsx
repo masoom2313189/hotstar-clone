@@ -14,7 +14,7 @@ const MovieDetails = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="pl-10 pb-7 h-screen grid grid-cols-2"
+      className="pl-10 pb-7 h-screen grid sm:grid-cols-2"
     >
       <div>
         <h1 className="text-slate-300 pt-44 font-bold text-4xl">

@@ -14,7 +14,7 @@ const Welcome = (props: movieProp) => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="pb-7 h-screen grid grid-cols-2"
+      className="pb-7 h-screen grid sm:grid-cols-2"
     >
       <div className="sm:pl-20 pl-20">
         <h1 className="text-slate-300 pt-44 font-bold text-4xl">
