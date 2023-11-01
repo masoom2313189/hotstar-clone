@@ -4,28 +4,34 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase/setup";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signin = () => {
+  const navigate = useNavigate();
+
   const [phone, setPhone] = useState("");
   const [user, setUser] = useState<any>(null);
   const [otp, setOtp] = useState("");
 
   const sendOtp = async () => {
     try {
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha");
+      const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
       const confirmation = await signInWithPhoneNumber(auth, phone, recaptcha);
       setUser(confirmation);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const verifyOtp = async () => {
     try {
-      const data = await user.confirm(otp);
-      console.log(data);
+      await user.confirm(otp);
+      auth.currentUser && toast.success("SignedIn successfully");
+      navigate("/");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -33,41 +39,38 @@ const Signin = () => {
     <div className="grid grid-cols-2 h-screen bg-black">
       <div
         style={{
-          backgroundImage: `linear-gradient(to left, rgba(0,0,0,7), rgba(0,0,0,0.1)), url(${signin})`,
+          backgroundImage: `linear-gradient(to left,rgba(0,0,0,7),rgba(0,0,0,0.1)),url(${signin})`,
         }}
       ></div>
-      <div>
-        <h1 className="text-xl font-semibold text-white mt-24 mb-5">
-          Log in or Sign up to continue
+      <div className="ml-36">
+        <h1 className="mt-24 text-xl font-semibold text-white">
+          Log in or sign up to continue
         </h1>
         <PhoneInput
           country={"in"}
           value={phone}
           onChange={(phone) => setPhone("+" + phone)}
           inputStyle={{ backgroundColor: "black", color: "white" }}
-          placeholder="Enter your mobile number"
+          placeholder="Enter mobile number"
         />
-        <h6 className="text-gray-500 text-xs mt-3">
-          By proceeding you confirm that you are above 18 years <br /> of age
-          and agree to the privacy Policy and Terms of Use.
+        <h6 className="text-gray-500 text-xs mt-3 ">
+          By proceeding you confirm that you are above 18 years
+          <br /> of age and agree to the Privacy Policy and Terms of use
         </h6>
         {phone && (
           <button
             onClick={sendOtp}
-            type="button"
-            className="text-white bg-blue-700 text-lg hover:bg-blue-800 focus:ring-4 mt-10 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 h-12 w-72 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="mt-10 h-12 bg-blue-700 w-72 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Get Otp
+            Send Otp
           </button>
         )}
-
-        <div id="recaptcha" className="mt-5"></div>
+        <div id="recaptcha" className="mt-2"></div>
         {phone && (
           <input
-            type="number"
-            id="input"
             onChange={(e) => setOtp(e.target.value)}
-            className="bg-black border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-10"
+            type="text"
+            className="bg-black border border-gray-300 mt-10 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter Otp"
             required
           />
@@ -75,16 +78,15 @@ const Signin = () => {
         {otp && (
           <button
             onClick={verifyOtp}
-            type="button"
-            className="text-white bg-blue-700 text-lg hover:bg-blue-800 focus:ring-4 mt-10 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 h-12 w-72 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="mt-10  bg-blue-700 w-72 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Verify Otp
           </button>
         )}
         {otp && (
-          <h3 className="text-slate-500 ml-3 mt-20">
-            Enter code, number an{" "}
-            <span className="text-blue-500">Click Get Opt</span>
+          <h3 className="text-slate-500 ml-3 mt-3">
+            Enter code, number and{" "}
+            <span className="text-blue-500">click Send Otp</span>
           </h3>
         )}
       </div>
