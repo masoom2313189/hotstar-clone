@@ -43,7 +43,7 @@ const Signin = () => {
         }}
         className=" md:block hidden"
       ></div>
-      <div className="ml-36">
+      <div className="sm:ml-36 ml-5">
         <h1 className="mt-24 text-xl font-semibold text-white">
           Log in or sign up to continue
         </h1>
