@@ -1,10 +1,9 @@
 # Live
-
 https://hotstar-clone-c56cd.web.app/
 
 # Preview
+![image](https://github.com/masoom2313189/hotstar-clone/assets/105916377/95176547-ad51-47f9-8393-4ddd46ce5b1a)
 
-![Alt text](image.png)
 
 # Getting Started with Create React App
 
